@@ -4,13 +4,13 @@
     $hourNow = date("H");
     $partOfDay = "hägune aeg";
 
-    if($hourNow < 8 AND $hourNow > 4){
+    if($hourNow <= 8 AND $hourNow >= 4){
         $partOfDay = "hommik";
     }
     elseif($hourNow > 8 AND $hourNow < 16){
         $partOfDay = "kooliaeg";
     }
-    elseif($hourNow > 16 AND $hourNow < 19){
+    elseif($hourNow >= 16 AND $hourNow <= 19){
         $partOfDay = "õhtu";
     }
     else{
