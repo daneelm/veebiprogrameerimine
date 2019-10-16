@@ -18,8 +18,8 @@
     require("functions_user.php");
     $database = "if19_daniel_ee_1";
     $userName = "Sisselogimata kasutaja";
-     
     
+
     if(isset($_POST["login"])){
 		if (isset($_POST["email"]) and !empty($_POST["email"])){
 		  $email = test_input($_POST["email"]);
@@ -111,8 +111,6 @@
         $randomImgHTML = "<p>Kahjuks pilte ei ole !?!?!?!?</p>";
     }
 
-    require("header.php");
-
     echo "<h1>" .$userName .", veebiprogrameerimine 2019</h1>";
 ?>
     <p>See veebileht on valminud oppetoo kaigus ning ei sisalda mingisugust tosiseltvoetavat sisu!</p>
@@ -122,7 +120,12 @@
     echo "<p>See on minu esimene PHP!</p>";
     echo "<p>Lehe avamise hetkel oli " .$weekDaysET[$weekDay-1] .", " .$monthsET[$month-1] .", " .$fullTimeNow .", " .$partOfDay .".</p>";
 ?>
+<!DOCTYPE html>
 <html>
+<head>
+    <meta charset="utf-8">
+	<title>Sisselogimis leht</title>
+  </head>
 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <label>E-mail (kasutajatunnus):</label><br>
 	<input type="email" name="email" value="<?php echo $email; ?>"><span><?php echo $emailError; ?></span><br>
@@ -131,7 +134,7 @@
     <input name="login" type="submit" value="Logi sisse"><span><?php echo $notice; ?></span>
     </form>
     <br>
-	<h2>Kui pole kasutajakontot</h2>
+	<p>Kui pole kasutajakontot</p>
 	<p>Loo <a href="newuser.php">kasutajakonto</a>!</p>
 </html>
 <hr>

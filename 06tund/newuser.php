@@ -44,15 +44,11 @@
           $surnameError = "Palun sisesta oma perekonnanimi!";
       }
       
-      if(isset($_POST["password"]) and !empty($_POST["password"]) and strlen($_POST["password"]) > 8){
-        $password = test_input($_POST["password"]);
-      }
-      else{
-        if(strlen($_POST["password"]) < 8 and strlen($_POST["password"]) > 0){
-          $passwordError = "Parool on liiga lühike! Peab olema vähemalt 8 märki!";
-        }
-        else{
-          $passwordError = "Palun sisesta oma parool!";
+      if (!isset($_POST["password"]) or empty($_POST["password"])){
+        $passwordError = "Palun sisesta salasõna!";
+      } else {
+        if(strlen($_POST["password"]) < 8){
+          $passwordError = "Liiga lühike salasõna (sisestasite ainult " .strlen($_POST["password"]) ." märki).";
         }
       }
       if(isset($_POST["email"]) and !empty($_POST["email"])){
@@ -61,17 +57,18 @@
       else{
           $emailError = "Palun sisesta oma email!";
       }
-      if(isset($_POST["gender"]) and !empty($_POST["gender"])){
+      if(isset($_POST["gender"])){
         $gender = test_input($_POST["gender"]);
       }
       else{
           $genderError = "Palun vali oma sugu!";
       }
-      if(isset($_POST["confirmpassword"]) and !empty($_POST["confirmpassword"] and $_POST["password"] === $_POST["confirmpassword"])){
-        $confirmpassword = test_input($_POST["confirmpassword"]);
-      }
-      else{
-          $confirmpasswordError = "Paroolid ei ühti!";
+      if (!isset($_POST["confirmpassword"]) or empty($_POST["confirmpassword"])){
+        $confirmpasswordError = "Palun sisestage salasõna kaks korda!";  
+      } else {
+        if($_POST["confirmpassword"] != $_POST["password"]){
+          $confirmpasswordError = "Sisestatud salasõnad ei olnud ühesugused!";
+        }
       }
       //ajutine
       $surname = test_input($_POST["surName"]);
