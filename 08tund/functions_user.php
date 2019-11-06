@@ -175,6 +175,7 @@ function changePw($oldpassword, $newpassword){
 			//$notice = "sobib";
 			$options = ["cost" => 12, "salt" => substr(sha1(rand()), 0, 22)];
 			$pwdhash = password_hash($newpassword, PASSWORD_BCRYPT, $options);
+			$stmt = $conn -> prepare("UPDATE vpuserprofiles SET password = ? WHERE userid = ?");
 
 		
 
